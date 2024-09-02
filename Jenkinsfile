@@ -49,3 +49,5 @@ pipeline {
 
   }
 }
+// to verify deployment run the following command on EC2 connect : kubectl get deployments -n devsecops
+// to verify loadbalancer configuration run the following command : kubectl get svc -n devsecops
