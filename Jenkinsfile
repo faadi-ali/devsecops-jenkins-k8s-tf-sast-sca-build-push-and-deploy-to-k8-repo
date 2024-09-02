@@ -22,7 +22,7 @@ pipeline {
             steps { 
                withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
                  script{
-                 app =  docker.build("devsecopsimage")
+                 app =  docker.build("devsecopsimage") // Create a repo on AWS ECR that must match the imagename
                  }
                }
             }
@@ -42,7 +42,7 @@ pipeline {
 	   steps {
 	      withKubeConfig([credentialsId: 'kubelogin']) {
 		  sh('kubectl delete all --all -n devsecops')
-		  sh ('kubectl apply -f deployment.yaml --namespace=devsecops')
+		  sh ('kubectl apply -f deployment.yaml --namespace=devsecops') // Create the namespace beforehand using "kubectl create namespace devsecops"
 		}
 	      }
    	}
